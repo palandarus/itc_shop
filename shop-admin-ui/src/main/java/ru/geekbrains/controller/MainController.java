@@ -86,7 +86,7 @@ public class MainController {
         Model model
     ){
         userService.remove(id);
-        return "redirect:/orders";
+        return "redirect:/users";
     }
 
 }
