@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import services.RoleService;
 import services.UserService;
+import utils.RoleFilter;
 import utils.UserFilter;
 
 import javax.validation.Valid;
@@ -43,7 +44,7 @@ public class MainController {
     }
 
     @GetMapping("/users/edit/{id}")
-    public String showEditForm(@PathVariable Long id, Model model) {
+    public String showUserEditForm(@PathVariable Long id, Model model) {
         User u = userService.findById(id);
         List<Role> roles = roleService.findAll();
         model.addAttribute("user", u);
@@ -75,7 +76,7 @@ public class MainController {
 
 
     @PostMapping("/users/edit")
-    public String showEditForm(@ModelAttribute User user) {
+    public String showUserEditForm(@ModelAttribute User user) {
         userService.saveOrUpdate(user);
         return "redirect:/users";
     }
@@ -88,5 +89,65 @@ public class MainController {
         userService.remove(id);
         return "redirect:/users";
     }
+
+    @GetMapping("/roles")
+    public String showAllRoles(Model model,
+                               @RequestParam(defaultValue = "1", name = "p") Integer page,
+                               @RequestParam Map<String, String> params
+    ) {
+        page = (page < 1) ? 1 : page;
+        RoleFilter roleFilter = new RoleFilter(params);
+        Page<Role> roles = roleService.findAll(roleFilter.getSpec(), page - 1, 5);
+        model.addAttribute("roles", roles);
+        model.addAttribute("filterDefinition", roleFilter.getFilterDefinition());
+
+        return "roles";
+    }
+
+    @GetMapping("/roles/edit/{id}")
+    public String showRoleEditForm(@PathVariable Long id, Model model) {
+        Role role = roleService.findById(id);
+        model.addAttribute("role", role);
+        return "role";
+    }
+
+    @GetMapping("/role/add")
+    public String addRole(
+            Model model
+    ) {
+        model.addAttribute("role", new Role());
+        return "role_add_form";
+    }
+
+    @PostMapping("/add")
+    public String addRole(
+            @Valid @ModelAttribute Role role,
+            BindingResult bindingResult
+    ) {
+        if (bindingResult.hasErrors()) {
+            return "role_add_form";
+        }
+        roleService.saveOrUpdate(role);
+        return "redirect:/roles";
+    }
+
+
+
+
+    @PostMapping("/roles/edit")
+    public String showEditForm(@ModelAttribute Role role) {
+        roleService.saveOrUpdate(role);
+        return "redirect:/roles";
+    }
+
+    @GetMapping("/roles/remove/{id}")
+    public String removeRole(
+            @PathVariable("id") Long id,
+            Model model
+    ){
+        roleService.remove(id);
+        return "redirect:/roles";
+    }
+
 
 }

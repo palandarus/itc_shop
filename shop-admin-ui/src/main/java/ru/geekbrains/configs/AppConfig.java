@@ -6,14 +6,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import utils.DateFormatter;
 
-//@Configuration
-//@EnableTransactionManagement
+@Configuration
+@EnableTransactionManagement
 //@SpringBootApplication(scanBasePackages={"ru.geekbrains"})
 public class AppConfig {
 
-//    @Bean
-//    public DateFormatter dateFormatter() {
-//        return new DateFormatter();
-//    }
+    @Bean
+    public DateFormatter dateFormatter() {
+        return new DateFormatter();
+    }
 
 }
