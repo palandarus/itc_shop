@@ -1,9 +1,5 @@
 package ru.geekbrains.services;
 
-import ru.geekbrains.data.UserData;
-import ru.geekbrains.entities.Role;
-import ru.geekbrains.entities.User;
-import ru.geekbrains.exceptions.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -18,12 +14,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.geekbrains.data.UserData;
+import ru.geekbrains.entities.Role;
+import ru.geekbrains.entities.User;
+import ru.geekbrains.exceptions.ResourceNotFoundException;
 import ru.geekbrains.repositories.UserRepository;
 
 import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -58,7 +57,8 @@ public class UserService implements UserDetailsService {
 
     public User createUser(UserData userData) {
         User user = new User();
-        user.setName(userData.getName());
+        user.setFirstName(userData.getFirstName());
+        user.setLastName(userData.getLastName());
         user.setUsername(userData.getUsername());
         user.setPassword(passwordEncoder.encode(userData.getPassword()));
         user.setEmail(userData.getEmail());
@@ -98,7 +98,8 @@ public class UserService implements UserDetailsService {
         User currentUser=userRepository.getOne(user.getId());
         currentUser.setUsername(user.getUsername());
         currentUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        currentUser.setName(user.getName());
+        currentUser.setFirstName(user.getFirstName());
+        currentUser.setLastName(user.getLastName());
         currentUser.setAddress(user.getAddress());
         currentUser.setDescription(user.getDescription());
         currentUser.setEmail(user.getEmail());

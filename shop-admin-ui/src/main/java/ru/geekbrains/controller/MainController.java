@@ -13,7 +13,6 @@ import ru.geekbrains.services.UserService;
 import ru.geekbrains.utils.RoleFilter;
 import ru.geekbrains.utils.UserFilter;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -68,7 +67,7 @@ public class MainController {
 
     @PostMapping("/users/add")
     public String addUser(
-            @Valid @ModelAttribute UserData userData,
+            @ModelAttribute UserData userData,
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
@@ -127,7 +126,7 @@ public class MainController {
 
     @PostMapping("/role/add")
     public String addRole(
-            @Valid @ModelAttribute Role role,
+            @ModelAttribute Role role,
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {

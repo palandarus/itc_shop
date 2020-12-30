@@ -28,8 +28,16 @@
                     <form id="user_create_form" method="POST" th:action="@{/users/add}" th:object="${user}" _lpchecked="1">
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
-                                <label for="validationServer01">Name</label>
-                                <input th:field="*{name}" type="text" class="form-control is-valid" id="validationServer01"
+                                <label for="validationServer01">First Name</label>
+                                <input th:field="*{firstName}" type="text" class="form-control is-valid" id="validationServer01"
+                                       placeholder="Name" autocomplete="off"/>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServer09">Last Name</label>
+                                <input th:field="*{lastName}" type="text" class="form-control is-valid" id="validationServer09"
                                        placeholder="Name" autocomplete="off"/>
                                 <div class="valid-feedback">
                                     Looks good!
