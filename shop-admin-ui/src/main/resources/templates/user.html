@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.themeleaf.org"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace="~{fragments/resources :: head/link}"></th:block>
+    <th:block th:replace="~{fragments/resources :: head/script}"></th:block>
+
+    <title>BootAdmin</title>
+</head>
+<body class="bg-light">
+<div class="container">
+
+    <div th:replace="~{fragments/navigation :: store-main-menu}"/>
+
+    <div class="d-flex">
+
+        <div th:replace="~{fragments/navigation :: store-sidebar(Users)}"/>
+
+        <div class=" content p-4">
+            <div class="card mb-4">
+                <div class="card-header bg-white font-weight-bold">
+                    Editing User Form
+                </div>
+                <div class="card-body">
+                    <form id="user_edit_form" method="POST" th:action="@{/users/edit/}" th:object="${user}" _lpchecked="1">
+                        <input class="form-control" th:field="*{id}" type="hidden">
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServer01">Name</label>
+                                <input th:field="*{name}" type="text" class="form-control is-valid" id="validationServer01"
+                                       placeholder="Name" autocomplete="off"/>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServerUsername">Username</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                                    </div>
+                                    <input th:field="*{username}" type="text" class="form-control is-invalid" id="validationServerUsername"
+                                           placeholder="Username" aria-describedby="inputGroupPrepend3" required=""
+                                           autocomplete="off"/>
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServer02">Password</label>
+                                <input th:field="*{password}" type="password" class="form-control is-valid" id="validationServer02"
+                                       placeholder="Last name" value="Otto" required="" autocomplete="off"/>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="validationServer03">Address</label>
+                                <input th:field="*{address}" type="text" class="form-control is-invalid" id="validationServer03"
+                                       placeholder="Address"  autocomplete="off"/>
+                                <div class="invalid-feedback">
+                                    Please provide a valid city.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <label for="validationServer04">Description</label>
+                                <input th:field="*{description}" type="text" class="form-control is-invalid" id="validationServer04"
+                                       placeholder="Description" autocomplete="off"/>
+                                <div class="invalid-feedback">
+                                    Please provide a valid state.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <label for="validationServer06">Email</label>
+                                <input th:field="*{email}" type="text" class="form-control is-invalid" id="validationServer06"
+                                       placeholder="Email" autocomplete="off"/>
+                                <div class="invalid-feedback">
+                                    Please provide a valid zip.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <label for="validationServer07">Phone</label>
+                                <input th:field="*{phone}" type="text" class="form-control is-invalid" id="validationServer07"
+                                       placeholder="Phone" autocomplete="off"/>
+                                <div class="invalid-feedback">
+                                    Please provide a valid zip.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-0">
+                            <div th:each="role, stat :${roles}" class="form-check">
+
+                                <input
+                                        th:field="*{roles}"
+                                        th:value="${role.id}"
+                                        th:id="${role.name}"
+                                        type="checkbox"
+                                        class="form-check-input"/>
+                                <label
+                                        class="form-check-label"
+                                        th:text="${role.name}"
+                                        th:for="${role.name}"
+                                ></label>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer bg-white">
+                    <button class="btn btn-primary" type="submit" form="user_edit_form">Submit form</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,8 +1,8 @@
-package utils;
+package ru.geekbrains.utils;
 
-import entities.User;
+import ru.geekbrains.entities.User;
 import org.springframework.data.jpa.domain.Specification;
-import repositories.specifications.UserSpecifications;
+import ru.geekbrains.repositories.specifications.UserSpecifications;
 
 import java.util.Map;
 

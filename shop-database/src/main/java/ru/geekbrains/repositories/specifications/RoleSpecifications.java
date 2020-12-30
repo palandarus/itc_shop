@@ -1,7 +1,6 @@
-package repositories.specifications;
+package ru.geekbrains.repositories.specifications;
 
-import entities.Role;
-import entities.User;
+import ru.geekbrains.entities.Role;
 import org.springframework.data.jpa.domain.Specification;
 
 public class RoleSpecifications {

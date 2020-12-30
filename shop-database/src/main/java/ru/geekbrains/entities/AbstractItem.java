@@ -1,4 +1,4 @@
-package entities;
+package ru.geekbrains.entities;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

@@ -1,6 +1,6 @@
-package repositories;
+package ru.geekbrains.repositories;
 
-import entities.Role;
+import ru.geekbrains.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

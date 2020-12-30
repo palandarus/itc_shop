@@ -1,4 +1,4 @@
-package entities;
+package ru.geekbrains.entities;
 
 
 import javax.persistence.*;
@@ -137,6 +137,8 @@ public class User extends AbstractItem{
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
+
+
 
     @Override
     public String toString() {

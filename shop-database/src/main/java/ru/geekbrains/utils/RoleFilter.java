@@ -1,10 +1,8 @@
-package utils;
+package ru.geekbrains.utils;
 
-import entities.Role;
-import entities.User;
+import ru.geekbrains.entities.Role;
 import org.springframework.data.jpa.domain.Specification;
-import repositories.specifications.RoleSpecifications;
-import repositories.specifications.UserSpecifications;
+import ru.geekbrains.repositories.specifications.RoleSpecifications;
 
 import java.util.Map;
 

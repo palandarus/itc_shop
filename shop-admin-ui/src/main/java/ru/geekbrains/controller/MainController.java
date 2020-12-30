@@ -1,17 +1,17 @@
 package ru.geekbrains.controller;
 
-import entities.Role;
-import entities.User;
+import ru.geekbrains.data.UserData;
+import ru.geekbrains.entities.Role;
+import ru.geekbrains.entities.User;
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import services.RoleService;
-import services.UserService;
-import utils.RoleFilter;
-import utils.UserFilter;
+import ru.geekbrains.services.RoleService;
+import ru.geekbrains.services.UserService;
+import ru.geekbrains.utils.RoleFilter;
+import ru.geekbrains.utils.UserFilter;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -22,6 +22,11 @@ public class MainController {
 
     private UserService userService;
     private RoleService roleService;
+
+    public MainController(UserService userService, RoleService roleService) {
+        this.userService = userService;
+        this.roleService = roleService;
+    }
 
     @RequestMapping("/")
     public String indexPage(Model model){
@@ -43,32 +48,33 @@ public class MainController {
         return "users";
     }
 
-    @GetMapping("/users/edit/{id}")
+    @GetMapping("/user/edit/{id}")
     public String showUserEditForm(@PathVariable Long id, Model model) {
-        User u = userService.findById(id);
+        UserData u = userService.findById(id);
         List<Role> roles = roleService.findAll();
         model.addAttribute("user", u);
         model.addAttribute("roles", roles);
         return "user";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/users/add")
     public String addUser(
             Model model
     ) {
-        model.addAttribute("user", new User());
-        return "user_add_form";
+        model.addAttribute("user", new UserData());
+        model.addAttribute("roles", roleService.findAll());
+        return "user_create_form";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/users/add")
     public String addUser(
-            @Valid @ModelAttribute User user,
+            @Valid @ModelAttribute UserData userData,
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
-            return "user_add_form";
+            return "user_create_form";
         }
-        userService.saveOrUpdate(user);
+        userService.createUser(userData);
         return "redirect:/users";
     }
 
@@ -76,12 +82,12 @@ public class MainController {
 
 
     @PostMapping("/users/edit")
-    public String showUserEditForm(@ModelAttribute User user) {
+    public String showUserEditForm(@ModelAttribute UserData user) {
         userService.saveOrUpdate(user);
         return "redirect:/users";
     }
 
-    @GetMapping("/users/remove/{id}")
+    @PostMapping("/user/remove/{id}")
     public String removeUser(
             @PathVariable("id") Long id,
         Model model
@@ -104,7 +110,7 @@ public class MainController {
         return "roles";
     }
 
-    @GetMapping("/roles/edit/{id}")
+    @GetMapping("/role/edit/{id}")
     public String showRoleEditForm(@PathVariable Long id, Model model) {
         Role role = roleService.findById(id);
         model.addAttribute("role", role);
@@ -116,10 +122,10 @@ public class MainController {
             Model model
     ) {
         model.addAttribute("role", new Role());
-        return "role_add_form";
+        return "role_create_form";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/role/add")
     public String addRole(
             @Valid @ModelAttribute Role role,
             BindingResult bindingResult
@@ -134,13 +140,13 @@ public class MainController {
 
 
 
-    @PostMapping("/roles/edit")
+    @PostMapping("/role/edit")
     public String showEditForm(@ModelAttribute Role role) {
         roleService.saveOrUpdate(role);
         return "redirect:/roles";
     }
 
-    @GetMapping("/roles/remove/{id}")
+    @PostMapping("/role/remove/{id}")
     public String removeRole(
             @PathVariable("id") Long id,
             Model model

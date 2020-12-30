@@ -4,11 +4,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import utils.DateFormatter;
+import ru.geekbrains.utils.DateFormatter;
 
 @Configuration
 @EnableTransactionManagement
-//@SpringBootApplication(scanBasePackages={"ru.geekbrains"})
+@SpringBootApplication(scanBasePackages={"ru.geekbrains"})
 public class AppConfig {
 
     @Bean

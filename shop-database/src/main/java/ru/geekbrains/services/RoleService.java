@@ -1,12 +1,11 @@
-package services;
+package ru.geekbrains.services;
 
-import entities.Role;
-import entities.User;
+import ru.geekbrains.entities.Role;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import repositories.RoleRepository;
+import ru.geekbrains.repositories.RoleRepository;
 
 import java.util.List;
 
@@ -27,6 +26,8 @@ public class RoleService {
     }
 
     public void saveOrUpdate(Role role) {
+        String incomingRoleName= role.getName().toUpperCase();
+        role.setName(!incomingRoleName.startsWith("ROLE_") ? "ROLE_" + incomingRoleName : incomingRoleName);
         roleRepository.save(role);
     }
 

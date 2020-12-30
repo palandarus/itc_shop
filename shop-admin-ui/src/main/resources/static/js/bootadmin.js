@@ -31,11 +31,11 @@ if ($.isFunction($.fn.dataTable)) {
         initComplete: function (settings, json) {
             var self = this.api();
             var filter_input = $('#' + settings.nTable.id + '_filter input').unbind();
-            var search_button = $('<button type="button" class="btn btn-link btn-sm btn-icon ml-2 mb-1" data-toggle="tooltip" title="Search"><i class="fa fa-fw fa-search"></i></button>')
+            var search_button = $('<button type="button" class="btn btn-link btn-sm btn-icon ml-2 mb-1" ru.geekbrains.data-toggle="tooltip" title="Search"><i class="fa fa-fw fa-search"></i></button>')
                 .click(function () {
                     self.search(filter_input.val()).draw();
                 });
-            var reset_button = $('<button type="button" class="btn btn-link btn-sm btn-icon mb-1" data-toggle="tooltip" title="Reset"><i class="fa fa-fw fa-undo"></i></button>')
+            var reset_button = $('<button type="button" class="btn btn-link btn-sm btn-icon mb-1" ru.geekbrains.data-toggle="tooltip" title="Reset"><i class="fa fa-fw fa-undo"></i></button>')
                 .click(function () {
                     filter_input.val('');
                     search_button.click();
@@ -56,10 +56,10 @@ $(document).ready(function () {
     var body = $('body');
 
     body.tooltip({
-        selector: '[data-toggle="tooltip"]'
+        selector: '[ru.geekbrains.data-toggle="tooltip"]'
     });
     body.popover({
-        selector: '[data-toggle="popover"]'
+        selector: '[ru.geekbrains.data-toggle="popover"]'
     });
 
     $('.sidebar-toggle').on('click', function (e) {

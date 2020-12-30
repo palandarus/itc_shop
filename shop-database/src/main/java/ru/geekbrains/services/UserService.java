@@ -1,9 +1,9 @@
-package services;
+package ru.geekbrains.services;
 
-import data.UserData;
-import entities.Role;
-import entities.User;
-import exceptions.ResourceNotFoundException;
+import ru.geekbrains.data.UserData;
+import ru.geekbrains.entities.Role;
+import ru.geekbrains.entities.User;
+import ru.geekbrains.exceptions.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -18,11 +18,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repositories.UserRepository;
+import ru.geekbrains.repositories.UserRepository;
 
 import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,8 +37,8 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User findById(long id) {
-        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User with id: " + id + " doesn't exists (for edit)"));
+    public UserData findById(long id) {
+        return userRepository.findById(id).map(UserData::new).orElseThrow(() -> new ResourceNotFoundException("User with id: " + id + " doesn't exists (for edit)"));
     }
 
     public User findByUsername(String username) {
@@ -62,6 +63,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(userData.getPassword()));
         user.setEmail(userData.getEmail());
         user.setPhone(userData.getPhone());
+        user.setRoles(userData.getRoles());
         return userRepository.save(user);
     }
 
@@ -92,8 +94,17 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll(spec, PageRequest.of(page, size));
     }
 
-    public User saveOrUpdate(User user) {
-        return userRepository.save(user);
+    public User saveOrUpdate(UserData user) {
+        User currentUser=userRepository.getOne(user.getId());
+        currentUser.setUsername(user.getUsername());
+        currentUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        currentUser.setName(user.getName());
+        currentUser.setAddress(user.getAddress());
+        currentUser.setDescription(user.getDescription());
+        currentUser.setEmail(user.getEmail());
+        currentUser.setRoles(user.getRoles());
+        currentUser.setPhone(user.getPhone());
+        return userRepository.save(currentUser);
     }
 
     public void remove(Long id) {

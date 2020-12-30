@@ -1,7 +1,6 @@
-package repositories.specifications;
+package ru.geekbrains.repositories.specifications;
 
-import com.sun.xml.bind.v2.TODO;
-import entities.User;
+import ru.geekbrains.entities.User;
 import org.springframework.data.jpa.domain.Specification;
 
 public class UserSpecifications {

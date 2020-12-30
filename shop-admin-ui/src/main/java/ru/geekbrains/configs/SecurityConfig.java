@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import services.UserService;
+import ru.geekbrains.services.UserService;
 
 @Configuration
 @EnableWebSecurity//(debug = true)
@@ -30,7 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").hasAnyRole("ADMIN")
                 .and()
                 .formLogin()
-                .loginPage("/login")
                 .and()
                 .logout() // This is missing and is important
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
