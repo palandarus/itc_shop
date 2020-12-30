@@ -1,10 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.themeleaf.org"
+>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <th:block th:replace="~{fragments/resources :: head/link}"></th:block>
+    <th:block th:replace="~{fragments/resources :: head/script}"></th:block>
+
+    <title>BootAdmin</title>
+</head>
+<body class="bg-light">
+<div class="container">
+
+    <div th:replace="~{fragments/navigation :: store-main-menu}"/>
+
+    <div class="d-flex">
+
+        <div th:replace="~{fragments/navigation :: store-sidebar(Products)}"/>
+
+        <div class=" content p-4">
+            <div class="card mb-4">
+                <div class="card-header bg-white font-weight-bold">
+                    Creating Product Form
+                </div>
+                <div class="card-body">
+                    <form id="category_create_form" method="POST" th:action="@{/product/add}" th:object="${product}" _lpchecked="1">
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServer01">Name</label>
+                                <input th:field="*{name}" type="text" class="form-control is-valid" id="validationServer01"
+                                       placeholder="Name" autocomplete="off" required=""/>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServer02">Brand Name</label>
+                                <input th:field="*{brandName}" type="text" class="form-control is-valid" id="validationServer02"
+                                       placeholder="BrandName" autocomplete="off" />
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-4">
+                                <label for="validationServer04">Code</label>
+                                <input th:field="*{price}" type="number" class="form-control is-invalid" id="validationServer04"
+                                       placeholder="Description" autocomplete="off" required=""/>
+                                <div class="invalid-feedback">
+                                    Please provide a valid state.
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="categoryList">User roles</label>
+                                <select class="form-control" id="categoryList" th:field="*{category}" required>
+                                    <option th:each="category : ${categoryList}"
+                                            th:text="${category.name}"
+                                            th:value="${category.id}"
+                                            th:selected="${user.category?.contains(category)}"></option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer bg-white">
+                    <button class="btn btn-primary" type="submit" form="category_create_form">Submit form</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+
