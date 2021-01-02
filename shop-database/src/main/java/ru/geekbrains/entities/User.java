@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "users")
 public class User extends AbstractItem{
 
     @Column(name = "username", unique = true)
@@ -29,13 +29,16 @@ public class User extends AbstractItem{
     @Column(name = "description")
     private String description;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name", length = 32)
+    private String firstName;
+
+    @Column(name = "last_name", length = 32)
+    private String lastName;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
+    @Column(name = "phone", length = 12)
     private String phone;
 
     @ManyToMany
@@ -48,8 +51,9 @@ public class User extends AbstractItem{
     public User() {
     }
 
-    public User(String name, String email, String phone, Date birthday, String address, String description) {
-        this.name = name;
+    public User(String firstName, String lastName, String email, String phone, Date birthday, String address, String description) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.birthday = birthday;
@@ -58,12 +62,20 @@ public class User extends AbstractItem{
         this.enabled = true;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -139,22 +151,20 @@ public class User extends AbstractItem{
     }
 
 
-
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
-                ", id=" + getId() + '\'' +
                 ", enabled=" + enabled +
                 ", password='" + password + '\'' +
                 ", birthday=" + birthday +
                 ", address='" + address + '\'' +
                 ", description='" + description + '\'' +
-                ", name='" + name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", roles=" + roles +
                 '}';
     }
-
 }

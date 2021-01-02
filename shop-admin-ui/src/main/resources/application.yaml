@@ -11,13 +11,13 @@ spring:
     password: root
 
   jpa:
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: validate
     generate-ddl: true
     show-sql: true
 
-#liquibase:
-#  change-log: classpath:db:/changelog/db.changelog-master.xml
-#  enabled: true
+liquibase:
+  change-log: /db.changelog/db.changelog-master.xml
+  enabled: true
 
   thymeleaf:
     enabled: true

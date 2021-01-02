@@ -17,6 +17,15 @@
                     <li><a href="/admin/roles" th:classappend="${activePage == 'Roles' ? 'active' : ''}">ROLES</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="#sm_expand_2" data-toggle="collapse" class th:attr="aria-expanded=${activePage == 'Products' || activePage == 'Categories' ? 'true' : 'false'}">
+                    <i class="fa fa-fw fa-link"></i> PRODUCTS & CATEGORIES
+                </a>
+                <ul id="sm_expand_2" class="list-unstyled collapse" th:classappend="${activePage == 'Products' || activePage == 'Categories' ? 'show' : ''}">
+                    <li><a href="/admin/products" th:classappend="${activePage == 'Products' ? 'active' : ''}">PRODUCTS</a></li>
+                    <li><a href="/admin/categories" th:classappend="${activePage == 'Categories' ? 'active' : ''}">CATEGORIES</a></li>
+                </ul>
+            </li>
             <li><a href="/admin/"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
             <li><a href="/admin/"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
             <li><a href="/admin/"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
