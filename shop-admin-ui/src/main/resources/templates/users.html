@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.themeleaf.org"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace="~{fragments/resources :: head/link}"></th:block>
+    <th:block th:replace="~{fragments/resources :: head/script}"></th:block>
+    <script>
+        $(document).ready(function () {
+            $('#users').DataTable();
+        });
+    </script>
+
+    <title>BootAdmin</title>
+</head>
+<body class="bg-light">
+<div class="container">
+
+    <div th:replace="~{fragments/navigation :: store-main-menu}"/>
+
+    <div class="d-flex">
+
+        <div th:replace="~{fragments/navigation :: store-sidebar(Users)}"/>
+
+        <div class=" content p-4">
+            <<h2 class="mb-4">User list</h2>
+
+            <div class="card mb-4">
+
+                <div class="card-body">
+                    <form class="form-group" th:action="@{/users/add}">
+                        <button type="submit" class="btn btn-primary">Create new</button>
+                    </form>
+
+                    <table id="users" class="table table-hover" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Birthday</th>
+                            <th>Address</th>
+                            <th>Description</th>
+                            <th class="actions">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="usr : ${users}">
+                            <td th:text="${usr.id}"></td>
+                            <td th:text="${usr.username}"></td>
+                            <td th:text="${usr.name}"></td>
+                            <td th:text="${usr.email}"></td>
+                            <td th:text="${usr.phone}"></td>
+                            <td th:text="${usr.birthday}"></td>
+                            <td th:text="${usr.address}"></td>
+                            <td th:text="${usr.description}"></td>
+                            <td>
+                                <a th:href="@{/user/edit/{id}(id=${usr.id})}" class="btn btn-icon btn-pill btn-primary"
+                                   data-toggle="tooltip" title="Edit">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </a>
+                                <form th:action="@{/user/remove/{id}(id=${usr.id})}" th:method="delete"
+                                      class="d-inline">
+                                    <button class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip"
+                                            title="Delete">
+                                        <i class="fa fa-fw fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

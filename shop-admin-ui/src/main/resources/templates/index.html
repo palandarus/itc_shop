@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.themeleaf.org"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace="~{fragments/resources :: head/link}"></th:block>
+    <th:block th:replace="~{fragments/resources :: head/script}"></th:block>
+
+    <title>BootAdmin</title>
+</head>
+<body class="bg-light">
+<div class="container">
+
+   <div th:replace="~{fragments/navigation :: store-main-menu}"/>
+
+    <div class="d-flex">
+
+        <div th:replace="~{fragments/navigation :: store-sidebar(Index)}"/>
+
+        <div class=" content p-4">
+            <h2 class="mb-4">Blank/Starter</h2>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    This is a blank page you can use as a starting point.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

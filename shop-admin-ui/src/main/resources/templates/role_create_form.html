@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.themeleaf.org"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace="~{fragments/resources :: head/link}"></th:block>
+    <th:block th:replace="~{fragments/resources :: head/script}"></th:block>
+
+    <title>BootAdmin</title>
+</head>
+<body class="bg-light">
+<div class="container">
+
+    <div th:replace="~{fragments/navigation :: store-main-menu}"/>
+
+    <div class="d-flex">
+
+        <div th:replace="~{fragments/navigation :: store-sidebar(Users)}"/>
+
+        <div class=" content p-4">
+            <div class="card mb-4">
+                <div class="card-header bg-white font-weight-bold">
+                    Creating Role Form
+                </div>
+                <div class="card-body">
+                    <form id="role_create_form" method="POST" th:action="@{/role/add}" th:object="${role}" _lpchecked="1">
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServer01">Name</label>
+                                <input th:field="*{name}" type="text" class="form-control is-valid" id="validationServer01"
+                                       placeholder="Name" autocomplete="off" required=""/>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-4">
+                                <label for="validationServer04">Description</label>
+                                <input th:field="*{description}" type="text" class="form-control is-invalid" id="validationServer04"
+                                       placeholder="Description" autocomplete="off"/>
+                                <div class="invalid-feedback">
+                                    Please provide a valid state.
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer bg-white">
+                    <button class="btn btn-primary" type="submit" form="role_create_form">Submit form</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

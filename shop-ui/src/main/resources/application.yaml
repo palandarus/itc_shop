@@ -1,0 +1,27 @@
+server:
+  port: 8989
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_shop_db?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+
+  #liquibase:
+  #  change-log: classpath:db:/changelog/db.changelog-master.xml
+  #  enabled: true
+
+  thymeleaf:
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
