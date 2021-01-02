@@ -5,9 +5,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.entities.Category;
 import ru.geekbrains.entities.Product;
+import ru.geekbrains.repositories.CategoryRepository;
 import ru.geekbrains.repositories.ProductRepository;
 
-import java.security.interfaces.ECPublicKey;
 import java.util.List;
 import java.util.Optional;
 

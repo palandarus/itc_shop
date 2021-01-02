@@ -12,10 +12,18 @@
         <tagDatabase tag="db_init"/>
     </changeSet>
     
-    <include file="v-1.0/db.changelog-2021010212000000.xml" relativeToChangelogFile="true"/>
+    <include file="v-2.0/db.changelog-20210102-173527016.xml" relativeToChangelogFile="true"/>
 
-    <changeSet id="10" author="root">
-        <tagDatabase tag="v-1.0"/>
+    <changeSet id="20" author="root">
+        <tagDatabase tag="v-2.0"/>
     </changeSet>
+
+    <include file="v-3.0/db.changelog-20210102-180536310.xml" relativeToChangelogFile="true"/>
+
+    <changeSet id="30" author="root">
+        <tagDatabase tag="v-3.0"/>
+    </changeSet>
+
+
 
 </databaseChangeLog>

@@ -1,41 +1,41 @@
 package ru.geekbrains.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
 public class Product extends AbstractItem {
 
-    @NotEmpty
-    @Size(min = 3, max = 20, message = "Title must have 3-20 characters")
     @Column(name = "title")
     private String title;
 
-    @NotEmpty
-    @Size(min = 3, max = 20, message = "Title must have 3-20 characters")
-    @Column(name = "brand_name")
-    private String brandName;
-
-    @Column(name = "image")
-    private String image;
+//    @Column(name = "image")
+//    private String image;
 
     @Column(name = "price")
-    private Double price;
+    private BigDecimal price;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name="brand_id")
+    private Brand brand;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Picture> pictures;
+
     public Product() {
     }
 
-    public Product(String title, String brandName, Double price, String image, Category category) {
+    public Product(String title, Brand brand, BigDecimal price, String image, Category category) {
         this.title = title;
-        this.brandName = brandName;
         this.price = price;
-        this.image = image;
+        this.brand=brand;
+//        this.image = image;
         this.category = category;
     }
 
@@ -47,29 +47,37 @@ public class Product extends AbstractItem {
         this.title = title;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
-    public Double getPrice() {
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
+//    public String getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(String image) {
+//        this.image = image;
+//    }
 
     public Category getCategory() {
         return category;
@@ -79,14 +87,16 @@ public class Product extends AbstractItem {
         this.category = category;
     }
 
+
+
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + getId() +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
+                ", brandName='" + brand.getName() + '\'' +
+//                ", image='" + image + '\'' +
                 ", price=" + price +
-                ", brandName=" + brandName +
-                ", image=" + image +
+                ", category=" + category +
                 '}';
     }
 }
