@@ -1,6 +1,7 @@
 package ru.geekbrains.controller;
 
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import ru.geekbrains.utils.RoleFilter;
 import java.util.List;
 import java.util.Map;
 
+@Controller
 public class RoleController {
 
     private RoleService roleService;
@@ -63,7 +65,7 @@ public class RoleController {
         return "redirect:/roles";
     }
 
-    @PostMapping("/role/remove/{id}")
+    @DeleteMapping("/role/remove/{id}")
     public String removeRole(
             @PathVariable("id") Long id,
             Model model

@@ -28,12 +28,11 @@ public class ProductController {
     public String showAllProducts(Model model) {
         List<Product> products = productService.findAll();
         model.addAttribute("products", products);
-        productService.getProductByMaxPrice();
 
         return "products";
     }
 
-    @GetMapping("/product/add")
+    @GetMapping("/products/add")
     public String addProduct(
             Model model
     ) {
@@ -43,7 +42,7 @@ public class ProductController {
         return "product_create_form";
     }
 
-    @PostMapping("/product/add")
+    @PostMapping("/products/add")
     public String addProduct(
             @Valid @ModelAttribute Product product,
             BindingResult bindingResult
@@ -55,7 +54,7 @@ public class ProductController {
         return "redirect:/products";
     }
 
-    @GetMapping("/product/edit/{id}")
+    @GetMapping("/products/edit/{id}")
     public String showProductEditForm(@PathVariable Long id, Model model) {
 
         Product p = productService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + " doesn't exists (for edit)"));
@@ -65,13 +64,13 @@ public class ProductController {
         return "product";
     }
 
-    @PostMapping("/product/edit")
-    public String showEditForm(@ModelAttribute Product product) {
+    @PostMapping("/products/edit")
+    public String showProductEditForm(@ModelAttribute Product product) {
         productService.saveOrUpdate(product);
         return "redirect:/products";
     }
 
-    @PostMapping("/product/delete/{id}")
+    @DeleteMapping("/products/remove/{id}")
     public String deleteOneProductById(@PathVariable Long id) {
         productService.deleteById(id);
         return "redirect:/products";

@@ -29,16 +29,16 @@ public class CategoryController {
         return "categories";
     }
 
-    @GetMapping("/category/add")
+    @GetMapping("/categories/add")
     public String addCategory(
             Model model
     ) {
         model.addAttribute("category", new Category());
-        return "product_create_form";
+        return "category_create_form";
     }
 
-    @PostMapping("/category/add")
-    public String addProduct(
+    @PostMapping("/categories/add")
+    public String addCategory(
             @Valid @ModelAttribute Category category,
             BindingResult bindingResult
     ) {
@@ -49,21 +49,21 @@ public class CategoryController {
         return "redirect:/categories";
     }
 
-    @GetMapping("/category/edit/{id}")
-    public String showProductEditForm(@PathVariable Long id, Model model) {
+    @GetMapping("/categories/edit/{id}")
+    public String showCategoryEditForm(@PathVariable Long id, Model model) {
         Category category = categoryService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Category with id: " + id + " doesn't exists (for edit)"));
         model.addAttribute("category", category);
         return "categories";
     }
 
-    @PostMapping("/category/edit")
-    public String showEditForm(@ModelAttribute Category category) {
+    @PostMapping("/categories/edit")
+    public String showCategoryEditForm(@ModelAttribute Category category) {
         categoryService.saveOrUpdate(category);
         return "redirect:/categories";
     }
 
-    @PostMapping("/product/delete/{id}")
-    public String deleteOneProductById(@PathVariable Long id) {
+    @DeleteMapping("/categories/remove/{id}")
+    public String deleteOneCategoryById(@PathVariable Long id) {
         categoryService.deleteById(id);
         return "redirect:/categories";
     }

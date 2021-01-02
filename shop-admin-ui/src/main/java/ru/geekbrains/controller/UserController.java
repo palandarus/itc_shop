@@ -77,7 +77,7 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @PostMapping("/user/remove/{id}")
+    @DeleteMapping("/user/remove/{id}")
     public String removeUser(
             @PathVariable("id") Long id,
             Model model

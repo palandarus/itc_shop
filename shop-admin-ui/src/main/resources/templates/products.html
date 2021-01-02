@@ -58,17 +58,19 @@
                             <td th:text="#{text.products.price(${p.price})}"/>
                             <td th:text="${{p.createDate}}"/>
                             <td th:text="${{p.modifyDate}}"/>
-                            <a th:href="@{/product/edit/{id}(id=${product.id})}" class="btn btn-icon btn-pill btn-primary"
-                               data-toggle="tooltip" title="Edit">
-                                <i class="fa fa-fw fa-edit"></i>
-                            </a>
-                            <form th:action="@{/product/remove/{id}(id=${product.id})}" th:method="delete"
-                                  class="d-inline">
-                                <button class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip"
-                                        title="Delete">
-                                    <i class="fa fa-fw fa-trash"></i>
-                                </button>
-                            </form>
+                            <td>
+                                <a th:href="@{/products/edit/{id}(id=${p.id})}" class="btn btn-icon btn-pill btn-primary"
+                                   data-toggle="tooltip" title="Edit">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </a>
+                                <form th:action="@{/products/remove/{id}(id=${p.id})}" th:method="delete"
+                                      class="d-inline">
+                                    <button class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip"
+                                            title="Delete">
+                                        <i class="fa fa-fw fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

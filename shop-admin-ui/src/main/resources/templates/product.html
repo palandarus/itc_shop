@@ -25,12 +25,13 @@
                     Creating Product Form
                 </div>
                 <div class="card-body">
-                    <form id="category_create_form" method="POST" th:action="@{/product/edit}" th:object="${product}" _lpchecked="1">
+                    <form id="category_create_form" method="POST" th:action="@{/products/edit}" th:object="${product}" _lpchecked="1">
                         <div class="form-row">
+                            <input th:field="*{id}" type="text" th:value="*{id}" hidden/>
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer01">Name</label>
-                                <input th:field="*{name}" type="text" class="form-control is-valid" id="validationServer01"
-                                       placeholder="Name" autocomplete="off" required=""/>
+                                <input th:field="*{title}" type="text" class="form-control is-valid" id="validationServer01"
+                                       placeholder="Title" autocomplete="off" required=""/>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -60,7 +61,7 @@
                                     <option th:each="category : ${categoryList}"
                                             th:text="${category.name}"
                                             th:value="${category.id}"
-                                            th:selected="${user.category?.contains(category)}"></option>
+                                            th:selected="${product.category?.equals(category)}"></option>
                                 </select>
                             </div>
 

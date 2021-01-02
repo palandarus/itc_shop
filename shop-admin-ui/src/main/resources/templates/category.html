@@ -27,6 +27,7 @@
                 <div class="card-body">
                     <form id="category_create_form" method="POST" th:action="@{/category/edit}" th:object="${category}" _lpchecked="1">
                         <div class="form-row">
+                            <input th:field="*{id}" th:value="*{id}" hidden>
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer01">Name</label>
                                 <input th:field="*{name}" type="text" class="form-control is-valid" id="validationServer01"
