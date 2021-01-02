@@ -1,9 +1,9 @@
 package ru.geekbrains.data;
 
+import javax.validation.constraints.NotNull;
 import ru.geekbrains.entities.Role;
 import ru.geekbrains.entities.User;
 
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -26,7 +26,10 @@ public class UserData {
     private String description;
 
     @NotNull
-    private String name;
+    private String firstName;
+
+    @NotNull
+    private String lastName;
 
     private String email;
 
@@ -82,12 +85,20 @@ public class UserData {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -133,7 +144,8 @@ public class UserData {
         this.birthday = user.getBirthday();
         this.address = user.getAddress();
         this.description = user.getDescription();
-        this.name = user.getName();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
         this.email = user.getEmail();
         this.phone = user.getPhone();
         this.roles = user.getRoles();
@@ -142,12 +154,18 @@ public class UserData {
     @Override
     public String toString() {
         return "UserData{" +
-                "name='" + name + '\'' +
+                "id=" + id +
                 ", username='" + username + '\'' +
+                ", enabled=" + enabled +
                 ", password='" + password + '\'' +
+                ", birthday=" + birthday +
+                ", address='" + address + '\'' +
+                ", description='" + description + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", roles=" + roles +
                 '}';
     }
-
 }
