@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.geekbrains.service.PictureService;
+import ru.geekbrains.service.PictureServiceFileImpl;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -19,10 +20,10 @@ public class PictureController {
 
     private static final Logger logger = LoggerFactory.getLogger(PictureController.class);
 
-    private final PictureService pictureService;
+    private final PictureServiceFileImpl pictureService;
 
     @Autowired
-    public PictureController(PictureService pictureService) {
+    public PictureController(PictureServiceFileImpl pictureService) {
         this.pictureService = pictureService;
     }
 

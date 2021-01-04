@@ -42,7 +42,7 @@ public class PictureServiceFileImpl implements PictureService {
     }
 
     @Override
-    public PictureData createPictureData(byte[] picture) throws IOException {
+    public PictureData createPictureData(byte[] picture) throws IOException{
         String fileName = UUID.randomUUID().toString().replace("-", "");
         boolean flag = true;
         while (flag) {

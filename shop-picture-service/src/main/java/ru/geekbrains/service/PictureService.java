@@ -10,7 +10,7 @@ public interface PictureService {
 
     Optional<String> getPictureContentTypeById(long id);
 
-    Optional<byte[]> getPictureDataById(long id);
+    Optional<byte[]> getPictureDataById(long id) throws IOException;
 
-    PictureData createPictureData(byte[] picture);
+    PictureData createPictureData(byte[] picture) throws IOException;
 }

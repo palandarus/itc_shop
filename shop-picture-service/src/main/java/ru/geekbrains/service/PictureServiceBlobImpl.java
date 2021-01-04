@@ -8,7 +8,7 @@ import ru.geekbrains.repositories.PictureRepository;
 
 import java.util.Optional;
 
-
+@Service
 public class PictureServiceBlobImpl implements PictureService {
 
     private final PictureRepository repository;
