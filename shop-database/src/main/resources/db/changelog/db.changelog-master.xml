@@ -25,5 +25,10 @@
     </changeSet>
 
 
+    <include file="v-4.0/db.changelog-20210104-131216957.xml" relativeToChangelogFile="true"/>
+
+    <changeSet id="40" author="root">
+        <tagDatabase tag="v-4.0"/>
+    </changeSet>
 
 </databaseChangeLog>

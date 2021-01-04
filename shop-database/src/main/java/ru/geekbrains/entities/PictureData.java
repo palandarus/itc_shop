@@ -18,11 +18,18 @@ public class PictureData {
     @Column(name = "data", length = 33554430) // для правильной hibernate-валидации в MySQL
     private byte[] data;
 
+    @Column(name="picture_file_path")
+    private String pictureFilePath;
+
     public PictureData() {
     }
 
     public PictureData(byte[] data) {
         this.data = data;
+    }
+
+    public PictureData(String pictureFilePath) {
+        this.pictureFilePath = pictureFilePath;
     }
 
     public Long getId() {
@@ -39,5 +46,13 @@ public class PictureData {
 
     public void setData(byte[] data) {
         this.data = data;
+    }
+
+    public String getPictureFilePath() {
+        return pictureFilePath;
+    }
+
+    public void setPictureFilePath(String pictureFilePath) {
+        this.pictureFilePath = pictureFilePath;
     }
 }
