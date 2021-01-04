@@ -1,4 +1,4 @@
-package ru.geekbrains.data;
+package ru.geekbrains.controller.repr;
 
 import javax.validation.constraints.NotNull;
 import ru.geekbrains.entities.Role;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-public class UserData {
+public class UserRepr {
     private Long id;
 
     @NotNull
@@ -136,10 +136,10 @@ public class UserData {
         this.id = id;
     }
 
-    public UserData() {
+    public UserRepr() {
     }
 
-    public UserData(User user) {
+    public UserRepr(User user) {
         this.id=user.getId();
         this.username = user.getUsername();
         this.enabled = user.isEnabled();

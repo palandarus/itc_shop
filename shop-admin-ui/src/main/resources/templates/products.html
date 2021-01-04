@@ -30,7 +30,7 @@
             <div class="card mb-4">
 
                 <div class="card-body">
-                    <form class="form-group" th:action="@{/products/add}">
+                    <form class="form-group" th:action="@{/products/create}">
                         <button type="submit" class="btn btn-primary">Create new</button>
                     </form>
 
@@ -38,9 +38,10 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Фотография</th>
+                            <th>Фото</th>
                             <th>Название</th>
                             <th>Бренд</th>
+                            <th>Категория</th>
                             <th>Цена</th>
                             <th>Дата создания</th>
                             <th>Дата изменения</th>
@@ -50,20 +51,22 @@
                         <tbody>
                         <tr th:each="p : ${products}">
                             <td th:text="${p.id}"/>
-                            <td align="center">
-                                <img th:src="@{'/img/' + ${p.image}}" th:width="100"/>
+                            <td>
+                                <img class="card-img-bottom" th:src="@{/picture/{pictureId}(pictureId=${p.pictures.get(0).id})}"
+                                     width="100"/>
                             </td>
-                            <td th:text="${p.title}"/>
-                            <td th:text="${p.brandName}"/>
+                            <td th:text="${p.name}"/>
+                            <td th:text="${p.brand.getName()}"/>
+                            <td th:text="${p.category.getName()}"/>
                             <td th:text="#{text.products.price(${p.price})}"/>
                             <td th:text="${{p.createDate}}"/>
                             <td th:text="${{p.modifyDate}}"/>
                             <td>
-                                <a th:href="@{/products/edit/{id}(id=${p.id})}" class="btn btn-icon btn-pill btn-primary"
+                                <a th:href="@{/products/{id}/edit(id=${p.id})}" class="btn btn-icon btn-pill btn-primary"
                                    data-toggle="tooltip" title="Edit">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </a>
-                                <form th:action="@{/products/remove/{id}(id=${p.id})}" th:method="delete"
+                                <form th:action="@{/products/{id}/remove(id=${p.id})}" th:method="delete"
                                       class="d-inline">
                                     <button class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip"
                                             title="Delete">
