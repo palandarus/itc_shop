@@ -4,12 +4,32 @@
     <title>Thymeleaf Fragments: resources</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.0.10/web-fonts-with-css/css/fontawesome-all.min.css}">
-    <link rel="stylesheet" th:href="@{/css/mdn.min.css}">
-    <link rel="stylesheet" th:href="@{/css/style.min.css}">
-    <script th:src="@{/js/bootadmin.js}"></script>
-    <script th:src="@{/js/datatables.min.js}"></script>
+    <style type="text/css">
+        html,
+        body,
+        header
+        @media (max-width: 740px) {
+
+            html,
+            body,
+            header
+
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header
+
+        }
+
+    </style>
+
     <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper/umd/popper.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/mdb.min.js}"></script>
 </head>
 <body>
 </body>
