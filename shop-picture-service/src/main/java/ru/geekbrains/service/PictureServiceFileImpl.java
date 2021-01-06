@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import ru.geekbrains.controller.repr.PictureRepr;
 import ru.geekbrains.entities.PictureData;
 import ru.geekbrains.repositories.PictureRepository;
 
@@ -85,4 +86,8 @@ public class PictureServiceFileImpl implements PictureService {
 
     }
 
+    @Override
+    public Optional<List<PictureRepr>> findAll() {
+        return Optional.of(repository.findAll().stream().map(PictureRepr::new).collect(Collectors.toList()));
+    }
 }

@@ -67,183 +67,152 @@
                 </div>
             </form>
 
-<!--            <div class="container-fluid mb-4">-->
+            <!--            <div class="container-fluid mb-4">-->
+            <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <div class="card hovereffect" th:each="pict : ${product.pictures}">
+                    <div class="card box16" th:each="pict : ${product.pictures}">
+
+                        <img class="card-img-bottom img-responsive"
+                             th:src="@{/picture/{pictureId}(pictureId=${pict.id})}"
+                             width="40%"/>
+                        <div class="box-content">
+                            <ul class="social">
+                                <li><a href="#"><i class="fa fa-trash"></i></a></li>
+                            </ul>
+                        </div>
+
                         <input
                                 th:field="${product.pictures}"
                                 th:value="${pict.id}"
                                 th:id="${pict.name}"
                                 type="checkbox"
-                                class="form-check-input"/>
-
-                        <img class="card-img-bottom img-responsive"
-                             th:src="@{/picture/{pictureId}(pictureId=${pict.id})}"
-                             width="40%"/>
-                        <div class="overlay">
-                            <h2 style="background-color: coral">REMOVE</h2>
-                            <p>
-                                <a href="#">
-                                    <i class="fa fa-times-circle"></i>
-                                </a>
-                            </p>
-                        </div>
+                                class="form-check-input" hidden/>
                     </div>
                 </div>
             </div>
+        </div>
 
-<!--        </div>-->
+        <!--        </div>-->
     </div>
 </div>
 <style>
-    .hovereffect {
-        width: 100%;
-        height: 100%;
-        float: left;
-        overflow: hidden;
-        position: relative;
+    .box16 {
         text-align: center;
-        cursor: default;
+        color: #fff;
+        position: relative
     }
 
-    .hovereffect .overlay {
+    .box16 .box-content, .box16:after {
         width: 100%;
-        height: 100%;
         position: absolute;
-        overflow: hidden;
+        left: 0
+    }
+
+    .box16:after {
+        content: "";
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .08) 69%, rgba(0, 0, 0, .76) 100%);
         top: 0;
-        left: 0;
+        transition: all .5s ease 0s
     }
 
-    .hovereffect img {
+    .box16 .post, .box16 .title {
+        transform: translateY(145px);
+        transition: all .4s cubic-bezier(.13, .62, .81, .91) 0s
+    }
+
+    .box16:hover:after {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, .01) 0, rgba(0, 0, 0, .09) 11%, rgba(0, 0, 0, .12) 13%, rgba(0, 0, 0, .19) 20%, rgba(0, 0, 0, .29) 28%, rgba(0, 0, 0, .29) 29%, rgba(0, 0, 0, .42) 38%, rgba(0, 0, 0, .46) 43%, rgba(0, 0, 0, .53) 47%, rgba(0, 0, 0, .75) 69%, rgba(0, 0, 0, .87) 84%, rgba(0, 0, 0, .98) 99%, rgba(0, 0, 0, .94) 100%)
+    }
+
+    .box16 img {
+        width: 100%;
+        height: auto
+    }
+
+    .box16 .box-content {
+        padding: 20px;
+        margin-bottom: 20px;
+        bottom: 0;
+        z-index: 1
+    }
+
+    .box16 .title {
+        font-size: 22px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 0 0 10px
+    }
+
+    .box16 .post {
         display: block;
+        padding: 8px 0;
+        font-size: 15px
+    }
+
+    .box16 .social li a, .box17 .icon li a {
+        border-radius: 50%;
+        font-size: 20px;
+        color: #fff
+    }
+
+    .box16:hover .post, .box16:hover .title {
+        transform: translateY(0)
+    }
+
+    .box16 .social {
+        list-style: none;
+        padding: 0 0 5px;
+        margin: 40px 0 25px;
+        opacity: 0;
         position: relative;
+        transform: perspective(500px) rotateX(-90deg) rotateY(0) rotateZ(0);
+        transition: all .6s cubic-bezier(0, 0, .58, 1) 0s
     }
 
-    .hovereffect h2 {
-        text-transform: uppercase;
-        color: #fff;
-        text-align: center;
-        font-size: 17px;
-    }
-
-    .hovereffect:hover h2 {
-        opacity: 0;
-        filter: alpha(opacity=0);
-        -webkit-transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
-        transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
-    }
-
-    .hovereffect a.info {
-        display: inline-block;
-        text-decoration: none;
-        padding: 7px 14px;
-        text-transform: uppercase;
-        color: #fff;
-        border: 1px solid #fff;
-        margin: 50px 0 0 0;
-        background-color: transparent;
-    }
-
-    .hovereffect a.info:hover {
-        box-shadow: 0 0 5px #fff;
-    }
-
-    .hovereffect h2,
-    .hovereffect p {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-        transition: opacity 0.35s, transform 0.35s;
-        -webkit-transform: translate3d(-50%, -50%, 0);
-        transform: translate3d(-50%, -50%, 0);
-        -webkit-transform-origin: 50%;
-        -ms-transform-origin: 50%;
-        transform-origin: 50%;
-        background-color: transparent;
-        margin: 0px;
-        padding: 0px;
-    }
-
-    .hovereffect .overlay:before {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 40%;
-        height: 60%;
-        border: 2px solid #fff;
-        content: '';
-        opacity: 0;
-        filter: alpha(opacity=0);
-        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-        transition: opacity 0.35s, transform 0.35s;
-        -webkit-transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(0, 0, 1);
-        transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(0, 0, 1);
-        -webkit-transform-origin: 50%;
-        -ms-transform-origin: 50%;
-        transform-origin: 50%;
-    }
-
-    .hovereffect p {
-        width: 20%;
-        text-transform: none;
-        font-size: 15px;
-        line-height: 2;
-    }
-
-    .hovereffect p a {
-        color: #fff;
-    }
-
-    .hovereffect p a:hover,
-    .hovereffect p a:focus {
-        opacity: 0.6;
-        filter: alpha(opacity=60);
-    }
-
-    .hovereffect a i {
-        opacity: 0;
-        filter: alpha(opacity=0);
-        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-        transition: opacity 0.35s, transform 0.35s;
-        padding: 0px 5px;
-    }
-
-    .hovereffect p a:first-child i {
-        -webkit-transform: translate3d(-60px, -60px, 0);
-        transform: translate3d(-60px, -60px, 0);
-    }
-
-    .hovereffect p a:nth-child(2) i {
-        -webkit-transform: translate3d(60px, -60px, 0);
-        transform: translate3d(60px, -60px, 0);
-    }
-
-    .hovereffect p a:nth-child(3) i {
-        -webkit-transform: translate3d(-60px, 60px, 0);
-        transform: translate3d(-60px, 60px, 0);
-    }
-
-    .hovereffect p a:nth-child(4) i {
-        -webkit-transform: translate3d(60px, 60px, 0);
-        transform: translate3d(60px, 60px, 0);
-    }
-
-    .hovereffect:hover .overlay:before {
+    .box16:hover .social {
         opacity: 1;
-        filter: alpha(opacity=100);
-        background-color: rgba(0, 0, 0, 0.2);
-        -webkit-transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -135deg) scale3d(1, 1, 1);
-        transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -135deg) scale3d(1, 1, 1);
+        transform: perspective(500px) rotateX(0) rotateY(0) rotateZ(0)
     }
 
-    .hovereffect:hover p i:empty {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-        filter: alpha(opacity=100);
+    .box16 .social:before {
+        content: "";
+        width: 50px;
+        height: 2px;
+        background: #fff;
+        margin: 0 auto;
+        position: absolute;
+        top: -23px;
+        left: 0;
+        right: 0
     }
+
+    .box16 .social li {
+        display: inline-block
+    }
+
+    .box16 .social li a {
+        display: block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        background: #6d3795;
+        margin-right: 10px;
+        transition: all .3s ease 0s
+    }
+
+    .box17 .icon li, .box17 .icon li a {
+        display: inline-block
+    }
+
+    .box16 .social li a:hover {
+        background: #bea041
+    }
+
+    .box16 .social li:last-child a {
+        margin-right: 0
+    }
+
 </style>
 </body>
 </html>
