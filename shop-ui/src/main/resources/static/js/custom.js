@@ -81,7 +81,7 @@ function gl_view() {
 }
 /* ===== Timer  =====   */
 function makeTimer() {
-    var endTime = new Date("August 10, 2018 12:00:00 PDT");         
+    var endTime = new Date("August 10, 2020 12:00:00 PDT");
     var endTime = (Date.parse(endTime)) / 1000;
     var now = new Date();
     var now = (Date.parse(now) / 1000);
