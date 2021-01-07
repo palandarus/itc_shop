@@ -13,8 +13,8 @@ public class MainController {
 
     @RequestMapping("/")
     public String indexPage(Model model) {
-        model.addAttribute("activePage", "Products");
-        return "redirect:products";
+        model.addAttribute("activePage", "Main ");
+        return "index";
     }
 
 
