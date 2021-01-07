@@ -54,7 +54,7 @@ public class ProductController {
         model.addAttribute("product", p);
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("brandList", brandList);
-        return "product";
+        return "product_info_form";
     }
 
 
