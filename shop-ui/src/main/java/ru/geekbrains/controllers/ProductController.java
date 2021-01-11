@@ -11,6 +11,7 @@ import ru.geekbrains.controllers.repr.CategoryRepr;
 import ru.geekbrains.controllers.repr.ProductRepr;
 import ru.geekbrains.exceptions.ResourceNotFoundException;
 import ru.geekbrains.service.BrandService;
+import ru.geekbrains.service.CartService;
 import ru.geekbrains.service.CategoryService;
 import ru.geekbrains.service.ProductService;
 
@@ -26,6 +27,7 @@ public class ProductController {
     private ProductService productService;
     private CategoryService categoryService;
     private BrandService brandService;
+    private CartService cartService;
 
     public ProductController(ProductService productService, CategoryService categoryService, BrandService brandService) {
         this.productService = productService;
@@ -39,7 +41,8 @@ public class ProductController {
         List<CategoryRepr> categories = categoryService.findAll();
         model.addAttribute("products", products);
         model.addAttribute("categories", categories);
-
+        model.addAttribute("lineItems", cartService.getLineItems());
+        model.addAttribute("subTotal", cartService.getSubTotal());
         return "products";
     }
 
@@ -51,6 +54,8 @@ public class ProductController {
         ProductRepr p = productService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + " doesn't exists (for edit)"));
         List<CategoryRepr> categoryList=categoryService.findAll();
         List<BrandRepr> brandList=brandService.findAll();
+        model.addAttribute("lineItems", cartService.getLineItems());
+        model.addAttribute("subTotal", cartService.getSubTotal());
         model.addAttribute("product", p);
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("brandList", brandList);

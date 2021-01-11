@@ -9,6 +9,7 @@ import ru.geekbrains.controllers.repr.BrandRepr;
 import ru.geekbrains.controllers.repr.CategoryRepr;
 import ru.geekbrains.controllers.repr.ProductRepr;
 import ru.geekbrains.service.BrandService;
+import ru.geekbrains.service.CartService;
 import ru.geekbrains.service.CategoryService;
 import ru.geekbrains.service.ProductService;
 
@@ -22,11 +23,13 @@ public class MainController {
     private ProductService productService;
     private CategoryService categoryService;
     private BrandService brandService;
+    private CartService cartService;
 
-    public MainController(ProductService productService, CategoryService categoryService, BrandService brandService) {
+    public MainController(ProductService productService, CategoryService categoryService, BrandService brandService, CartService cartService) {
         this.productService = productService;
         this.categoryService = categoryService;
         this.brandService = brandService;
+        this.cartService = cartService;
     }
 
     @RequestMapping("/")
@@ -35,6 +38,8 @@ public class MainController {
         List<ProductRepr> products = productService.findAll();
         List<CategoryRepr> categories = categoryService.findAll();
         List<BrandRepr> brands = brandService.findAll();
+        model.addAttribute("lineItems", cartService.getLineItems());
+        model.addAttribute("subTotal", cartService.getSubTotal());
         model.addAttribute("products", products);
         model.addAttribute("categories", categories);
         model.addAttribute("brands", brands);
