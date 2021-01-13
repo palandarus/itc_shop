@@ -2,7 +2,9 @@ package ru.geekbrains.controllers.repr;
 
 import ru.geekbrains.entities.Category;
 
-public class CategoryRepr {
+import java.io.Serializable;
+
+public class CategoryRepr implements Serializable {
 
     private Long id;
 

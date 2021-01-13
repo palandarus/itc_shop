@@ -21,4 +21,7 @@ public interface CartService extends Serializable {
 
     void updateCart(LineItem lineItem);
 
+    void removeLineItemFromCart(LineItem lineItem);
+
+
 }

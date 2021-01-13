@@ -15,15 +15,15 @@ public class LineItem implements Serializable {
 
     private Integer qty;
 
-    private String color;
-
-    private String material;
+//    private String color;
+//
+//    private String material;
 
     public LineItem(ProductRepr productRepr, String color, String material) {
         this.productId = productRepr.getId();
         this.productRepr = productRepr;
-        this.color = color;
-        this.material = material;
+//        this.color = color;
+//        this.material = material;
     }
 
     public LineItem() {
@@ -53,21 +53,21 @@ public class LineItem implements Serializable {
         this.qty = qty;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(String material) {
-        this.material = material;
-    }
+//    public String getColor() {
+//        return color;
+//    }
+//
+//    public void setColor(String color) {
+//        this.color = color;
+//    }
+//
+//    public String getMaterial() {
+//        return material;
+//    }
+//
+//    public void setMaterial(String material) {
+//        this.material = material;
+//    }
 
     @JsonIgnore
     public BigDecimal getTotal() {
@@ -79,13 +79,13 @@ public class LineItem implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LineItem lineItem = (LineItem) o;
-        return productId.equals(lineItem.productId) &&
+        return productId.equals(lineItem.productId) /*&&
                 Objects.equals(color, lineItem.color) &&
-                Objects.equals(material, lineItem.material);
+                Objects.equals(material, lineItem.material)*/;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, color, material);
+        return Objects.hash(productId/*, color, material*/);
     }
 }

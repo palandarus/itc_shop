@@ -29,11 +29,6 @@ public class CartServiceImpl implements CartService {
 
     private final Map<LineItem, Integer> lineItems;
 
-    @PostConstruct
-    public void post() {
-        logger.info("Session bean post construct");
-    }
-
     public CartServiceImpl() {
         this.lineItems = new HashMap<>();
     }
@@ -41,6 +36,11 @@ public class CartServiceImpl implements CartService {
     @JsonCreator
     public CartServiceImpl(@JsonProperty("lineItems") List<LineItem> lineItems) {
         this.lineItems = lineItems.stream().collect(Collectors.toMap(li -> li, LineItem::getQty));
+    }
+
+    @PostConstruct
+    public void post() {
+        logger.info("Session bean post construct");
     }
 
     @Override
@@ -82,6 +82,18 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void updateCart(LineItem lineItem) {
-        lineItems.put(lineItem, lineItem.getQty());
+        if (lineItem.getQty() == null || lineItem.getQty() == 0) removeLineItemFromCart(lineItem);
+        else {
+            if (lineItems.containsKey(lineItem)) {
+                int oldQty = lineItems.get(lineItem);
+                lineItems.put(lineItem, oldQty != lineItem.getQty() ? lineItem.getQty() : oldQty + 1);
+            } else lineItems.put(lineItem, lineItem.getQty());
+        }
     }
+
+    public void removeLineItemFromCart(LineItem lineItem) {
+        if (lineItems.containsKey(lineItem)) lineItems.remove(lineItem);
+    }
+
+
 }

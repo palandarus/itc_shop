@@ -4,13 +4,14 @@ package ru.geekbrains.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "categories")
-public class Category extends AbstractItem {
+public class Category extends AbstractItem implements Serializable {
 
     @NotEmpty
     @Column(name = "code")

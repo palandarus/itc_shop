@@ -8,9 +8,13 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.geekbrains.controllers.repr.ProductRepr;
+import ru.geekbrains.entities.Brand;
+import ru.geekbrains.entities.Category;
 import ru.geekbrains.entities.Picture;
 import ru.geekbrains.entities.Product;
 import ru.geekbrains.error.NotFoundException;
+import ru.geekbrains.repositories.BrandRepository;
+import ru.geekbrains.repositories.CategoryRepository;
 import ru.geekbrains.repositories.ProductRepository;
 
 import java.io.IOException;
@@ -26,11 +30,19 @@ public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
     private PictureService pictureService;
+    private CategoryService categoryService;
+    private CategoryRepository categoryRepository;
+    private BrandService brandService;
+    private BrandRepository brandRepository;
 
 
-    public ProductServiceImpl(ProductRepository productRepository, PictureService pictureService) {
+    public ProductServiceImpl(ProductRepository productRepository, PictureService pictureService, CategoryService categoryService, BrandService brandService, CategoryRepository categoryRepository, BrandRepository brandRepository) {
         this.productRepository = productRepository;
         this.pictureService = pictureService;
+        this.categoryService=categoryService;
+        this.brandService=brandService;
+        this.categoryRepository=categoryRepository;
+        this.brandRepository=brandRepository;
     }
 
     public Optional<ProductRepr> findById(Long id) {
@@ -49,9 +61,13 @@ public class ProductServiceImpl implements ProductService {
     public Product saveOrUpdate(ProductRepr productRepr) throws IOException {
         Product product = (productRepr.getId() != null) ? productRepository.findById(productRepr.getId())
                 .orElseThrow(NotFoundException::new) : new Product();
+        Category category=(productRepr.getCategory().getId() != null) ? categoryRepository.findById(productRepr.getCategory().getId())
+                .orElseThrow(NotFoundException::new) : new Category();
+        Brand brand=(productRepr.getBrand().getId() != null) ? brandRepository.findById(productRepr.getBrand().getId())
+                .orElseThrow(NotFoundException::new) : new Brand();
         product.setTitle(productRepr.getName());
-        product.setCategory(productRepr.getCategory());
-        product.setBrand(productRepr.getBrand());
+        product.setCategory(category);
+        product.setBrand(brand);
         product.setPrice(productRepr.getPrice());
 
         if (productRepr.getNewPictures() != null) {

@@ -6,6 +6,7 @@ import ru.geekbrains.entities.Brand;
 import ru.geekbrains.entities.Category;
 import ru.geekbrains.entities.Product;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -13,16 +14,16 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 
-public class ProductRepr {
+public class ProductRepr implements Serializable {
     private Long id;
 
     private String name;
 
     private BigDecimal price;
 
-    private Category category;
+    private CategoryRepr category;
 
-    private Brand brand;
+    private BrandRepr brand;
 
     private Date createDate;
 
@@ -39,8 +40,8 @@ public class ProductRepr {
         this.id = product.getId();
         this.name = product.getTitle();
         this.price = product.getPrice();
-        this.category = product.getCategory();
-        this.brand = product.getBrand();
+        this.category = new CategoryRepr(product.getCategory());
+        this.brand = new BrandRepr(product.getBrand());
         this.pictures = product.getPictures().stream()
                 .map(PictureRepr::new)
                 .collect(Collectors.toList());
@@ -72,19 +73,19 @@ public class ProductRepr {
         this.price = price;
     }
 
-    public Category getCategory() {
+    public CategoryRepr getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryRepr category) {
         this.category = category;
     }
 
-    public Brand getBrand() {
+    public BrandRepr getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    public void setBrand(BrandRepr brand) {
         this.brand = brand;
     }
 

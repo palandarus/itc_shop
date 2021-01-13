@@ -1,10 +1,7 @@
 package ru.geekbrains.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Service;
 import ru.geekbrains.controller.repr.PictureRepr;
-import ru.geekbrains.entities.Picture;
 import ru.geekbrains.entities.PictureData;
 import ru.geekbrains.repositories.PictureRepository;
 
@@ -25,13 +22,13 @@ public class PictureServiceBlobImpl implements PictureService {
 
     @Override
     public Optional<String> getPictureContentTypeById(long id) {
-        return repository.getPictureContentTypeById(id);
+        return repository.findPictureContentTypeById(id);
     }
 
     @Override
     public Optional<byte[]> getPictureDataById(long id) {
 
-        return repository.getPictureDataById(id);
+        return repository.findPictureDataById(id);
     }
 
     @Override

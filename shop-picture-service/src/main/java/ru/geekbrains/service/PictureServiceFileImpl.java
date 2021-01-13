@@ -36,14 +36,14 @@ public class PictureServiceFileImpl implements PictureService {
 
     @Override
     public Optional<String> getPictureContentTypeById(long id) {
-        return repository.getPictureContentTypeById(id);
+        return repository.findPictureContentTypeById(id);
     }
 
     @Override
     public Optional<byte[]> getPictureDataById(long id) throws IOException {
         return Optional.of(
                 Files.readAllBytes(
-                        Path.of(repository.getPictureFilePathById(id))));
+                        Path.of(repository.findPictureFilePathById(id))));
     }
 
     @Override
@@ -75,7 +75,7 @@ public class PictureServiceFileImpl implements PictureService {
 
     @Override
     public void deleteById(Long id) throws RuntimeException {
-        String pictureFilePath = repository.getPictureFilePathById(id);
+        String pictureFilePath = repository.findPictureFilePathById(id);
         try {
             Files.delete(Paths.get(pictureFilePath));
             repository.deleteById(id);

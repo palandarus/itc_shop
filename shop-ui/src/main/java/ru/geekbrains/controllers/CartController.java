@@ -3,6 +3,7 @@ package ru.geekbrains.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.geekbrains.service.CartService;
@@ -36,5 +37,25 @@ public class CartController {
         cartService.updateCart(lineItem);
         return "redirect:/cart";
     }
+
+    @RequestMapping(value = "/cart/update", method = RequestMethod.POST)
+    public String updateCartLineItem(Long productId, Integer quantity) {
+        LineItem lineItem=new LineItem();
+        lineItem.setProductId(productId);
+        lineItem.setQty(quantity);
+        return updateCart(lineItem);
+    }
+
+    @RequestMapping("/cart/remove/{id}")
+    public String cartPage(@PathVariable Long id) {
+        LineItem lineItem=new LineItem();
+        lineItem.setProductId(id);
+       cartService.removeLineItemFromCart(lineItem);
+        return "redirect:/cart";
+    }
+
+
+
+
 
 }

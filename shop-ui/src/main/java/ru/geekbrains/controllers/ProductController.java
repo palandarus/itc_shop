@@ -29,10 +29,11 @@ public class ProductController {
     private BrandService brandService;
     private CartService cartService;
 
-    public ProductController(ProductService productService, CategoryService categoryService, BrandService brandService) {
+    public ProductController(ProductService productService, CategoryService categoryService, BrandService brandService,CartService cartService) {
         this.productService = productService;
         this.categoryService=categoryService;
         this.brandService=brandService;
+        this.cartService=cartService;
     }
 
     @GetMapping("/products")

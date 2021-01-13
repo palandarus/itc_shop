@@ -2,14 +2,16 @@ package ru.geekbrains.controllers.repr;
 
 import ru.geekbrains.entities.Brand;
 
-public class BrandRepr {
+import java.io.Serializable;
 
-    private long id;
+public class BrandRepr implements Serializable {
+
+    private Long id;
 
     private String name;
     private long productCount;
 
-    public BrandRepr(long id, String name, long productCount) {
+    public BrandRepr(Long id, String name, long productCount) {
         this.id = id;
         this.name = name;
         this.productCount = productCount;
@@ -20,11 +22,11 @@ public class BrandRepr {
         this.name = brand.getName();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
