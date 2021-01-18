@@ -1,6 +1,8 @@
 package ru.geekbrains.entities;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.List;
 
 @Entity
 @Table(name = "pictures")
@@ -20,6 +22,8 @@ public class Picture {
     @OneToOne(fetch = FetchType.LAZY, cascade= CascadeType.ALL, optional = false, orphanRemoval = true)
     @JoinColumn(name="picture_data_id")
     private PictureData pictureData;
+
+
 
     @ManyToOne
     private Product product;
