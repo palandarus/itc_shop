@@ -29,16 +29,14 @@ public class ProductServiceImpl implements ProductService {
     private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
     private ProductRepository productRepository;
-    private PictureService pictureService;
     private CategoryService categoryService;
     private CategoryRepository categoryRepository;
     private BrandService brandService;
     private BrandRepository brandRepository;
 
 
-    public ProductServiceImpl(ProductRepository productRepository, PictureService pictureService, CategoryService categoryService, BrandService brandService, CategoryRepository categoryRepository, BrandRepository brandRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, CategoryService categoryService, BrandService brandService, CategoryRepository categoryRepository, BrandRepository brandRepository) {
         this.productRepository = productRepository;
-        this.pictureService = pictureService;
         this.categoryService=categoryService;
         this.brandService=brandService;
         this.categoryRepository=categoryRepository;
@@ -58,38 +56,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
-    public Product saveOrUpdate(ProductRepr productRepr) throws IOException {
-        Product product = (productRepr.getId() != null) ? productRepository.findById(productRepr.getId())
-                .orElseThrow(NotFoundException::new) : new Product();
-        Category category=(productRepr.getCategory().getId() != null) ? categoryRepository.findById(productRepr.getCategory().getId())
-                .orElseThrow(NotFoundException::new) : new Category();
-        Brand brand=(productRepr.getBrand().getId() != null) ? brandRepository.findById(productRepr.getBrand().getId())
-                .orElseThrow(NotFoundException::new) : new Brand();
-        product.setTitle(productRepr.getName());
-        product.setCategory(category);
-        product.setBrand(brand);
-        product.setPrice(productRepr.getPrice());
-
-        if (productRepr.getNewPictures() != null) {
-            for (MultipartFile newPicture : productRepr.getNewPictures()) {
-                logger.info("Product {} file {} size {} contentType {}", productRepr.getId(),
-                        newPicture.getOriginalFilename(), newPicture.getSize(), newPicture.getContentType());
-
-                if (product.getPictures() == null) {
-                    product.setPictures(new ArrayList<>());
-                }
-
-                product.getPictures().add(new Picture(
-                        newPicture.getOriginalFilename(),
-                        newPicture.getContentType(),
-                        pictureService.createPictureData(newPicture.getBytes()),
-                        product
-                ));
-            }
-        }
-
-        return productRepository.save(product);
-    }
 
 
     public void getProductByMaxPrice() {
