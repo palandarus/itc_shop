@@ -29,6 +29,8 @@
         <module>shop-ui</module>
         <module>shop-picture-service</module>
         <module>shop-picture-service-app</module>
+        <module>spring-eureka-server</module>
+        <module>spring-gateway</module>
     </modules>
 
     <dependencyManagement>
