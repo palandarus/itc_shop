@@ -523,10 +523,10 @@
             <div class="col-sm-8 col-lg-9 mtb_20">
                 <div class="row mt_10 ">
                     <div class="col-md-6">
-                        <div><a class="thumbnails"> <img data-name="product_image" th:src="@{/picture/{pictureId}(pictureId=${product.pictures.get(1).id})}" alt="" /></a></div>
+                        <div><a class="thumbnails"> <img data-name="product_image" th:src="@{{pictureServiceUrl}/picture/{pictureId}(pictureId=${product.pictures.get(1).id},pictureServiceUrl=${pictureServiceUrl})}" alt="" /></a></div>
                         <div id="product-thumbnail" class="owl-carousel">
                             <div class="item" th:each="pict : ${product.pictures}">
-                                <div class="image-additional"><a class="thumbnail" th:href="@{/picture/{pictureId}(pictureId=${pict.id})}" data-fancybox="group1"> <img th:src="@{/picture/{pictureId}(pictureId=${pict.id})}" alt="" /></a></div>
+                                <div class="image-additional"><a class="thumbnail" th:href="@{{pictureServiceUrl}/picture/{pictureId}(pictureId=${pict.id}, pictureServiceUrl=${pictureServiceUrl})}" data-fancybox="group1"> <img th:src="@{{pictureServiceUrl/picture/{pictureId}(pictureId=${pict.id},pictureServiceUrl=${pictureServiceUrl})}" alt="" /></a></div>
                             </div>
 
                         </div>

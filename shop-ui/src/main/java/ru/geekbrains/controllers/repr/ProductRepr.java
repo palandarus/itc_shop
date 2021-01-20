@@ -1,9 +1,6 @@
 package ru.geekbrains.controllers.repr;
 
 import org.springframework.web.multipart.MultipartFile;
-import ru.geekbrains.controller.repr.PictureRepr;
-import ru.geekbrains.entities.Brand;
-import ru.geekbrains.entities.Category;
 import ru.geekbrains.entities.Product;
 
 import java.io.Serializable;

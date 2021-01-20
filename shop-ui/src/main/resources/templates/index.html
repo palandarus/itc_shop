@@ -116,9 +116,9 @@
                                             <div class="image product-imageblock">
                                                 <a th:href="@{/products/{id}(id=${p.id})}">
                                                     <img data-name="product_image"
-                                                         th:src="@{/picture/{pictureId}(pictureId=${p.pictures.get(0).id})}"
+                                                         th:src="@{{pictureServiceUrl}}/picture/{pictureId}(pictureId=${p.pictures.get(0).id},pictureServiceUrl=${pictureServiceUrl})}"
                                                          alt="iPod Classic" title="iPod Classic" class="img-responsive">
-                                                    <img th:src="@{/picture/{pictureId}(pictureId=${p.pictures.get(1).id})}"
+                                                    <img th:src="@{{pictureServiceUrl}/picture/{pictureId}(pictureId=${p.pictures.get(1).id},pictureServiceUrl=${pictureServiceUrl})}"
                                                          alt="iPod Classic"
                                                          title="iPod Classic" class="img-responsive">
                                                 </a>
