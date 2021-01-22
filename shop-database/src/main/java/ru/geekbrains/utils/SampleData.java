@@ -10,7 +10,7 @@ import ru.geekbrains.repositories.UserRepository;
 import javax.annotation.PostConstruct;
 import java.util.Date;
 
-@Component
+//@Component
 public class SampleData {
 
     private UserRepository userRepository;
