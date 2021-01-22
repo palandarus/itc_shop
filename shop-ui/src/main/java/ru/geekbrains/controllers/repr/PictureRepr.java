@@ -1,4 +1,4 @@
-package ru.geekbrains.controller.repr;
+package ru.geekbrains.controllers.repr;
 
 
 import ru.geekbrains.entities.Picture;

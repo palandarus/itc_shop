@@ -24,7 +24,6 @@ public interface ProductService {
     public Page<Product> findAll(Specification<Product> spec, int page, int size);
 
 
-    public Product saveOrUpdate(ProductRepr productRepr) throws IOException;
 
 
     public void getProductByMaxPrice() ;

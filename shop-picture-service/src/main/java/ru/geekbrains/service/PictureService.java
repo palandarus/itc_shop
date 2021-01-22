@@ -1,9 +1,7 @@
 package ru.geekbrains.service;
 
 
-import org.springframework.stereotype.Service;
 import ru.geekbrains.controller.repr.PictureRepr;
-import ru.geekbrains.entities.Picture;
 import ru.geekbrains.entities.PictureData;
 
 import java.io.IOException;

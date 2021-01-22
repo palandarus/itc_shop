@@ -501,7 +501,7 @@
                             <tr th:each="l : ${lineItems}">
                               <form enctype="multipart/form-data" method="post" th:action="@{/cart/update}">
                                 <td class="text-center"><a th:href="@{/products/{id}(id=${l.productRepr.id})}"><img
-                                        th:src="@{/picture/{pictureId}(pictureId=${l.productRepr.pictures.get(0).id})}"
+                                        th:src="@{{pictureServiceUrl}/picture/{pictureId}(pictureId=${l.productRepr.pictures.get(0).id},pictureServiceUrl=${pictureServiceUrl})}"
                                         alt="iPod Classic" title="iPod Classic" width="100px"></a></td>
                                 <td class="text-left"><a th:href="@{/products/{id}(id=${l.productRepr.id})}"
                                                          th:text="${l.productRepr.name}"></a></td>
