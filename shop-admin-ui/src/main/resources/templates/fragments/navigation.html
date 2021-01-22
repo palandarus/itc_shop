@@ -18,12 +18,13 @@
                 </ul>
             </li>
             <li>
-                <a href="#sm_expand_2" data-toggle="collapse" class th:attr="aria-expanded=${activePage == 'Products' || activePage == 'Categories' ? 'true' : 'false'}">
-                    <i class="fa fa-fw fa-link"></i> PRODUCTS & CATEGORIES
+                <a href="#sm_expand_2" data-toggle="collapse" class th:attr="aria-expanded=${activePage == 'Products' || activePage == 'Categories' || activePage == 'Brands' ? 'true' : 'false'}">
+                    <i class="fa fa-fw fa-link"></i> PRODUCTS & CATEGORIES & BRANDS
                 </a>
-                <ul id="sm_expand_2" class="list-unstyled collapse" th:classappend="${activePage == 'Products' || activePage == 'Categories' ? 'show' : ''}">
+                <ul id="sm_expand_2" class="list-unstyled collapse" th:classappend="${activePage == 'Products' || activePage == 'Categories' || activePage == 'Brands'? 'show' : ''}">
                     <li><a href="/admin/products" th:classappend="${activePage == 'Products' ? 'active' : ''}">PRODUCTS</a></li>
                     <li><a href="/admin/categories" th:classappend="${activePage == 'Categories' ? 'active' : ''}">CATEGORIES</a></li>
+                    <li><a href="/admin/brands" th:classappend="${activePage == 'Brands' ? 'active' : ''}">BRANDS</a></li>
                 </ul>
             </li>
             <li><a href="/admin/"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
@@ -53,5 +54,12 @@
             </ul>
         </div>
     </nav>
+</div>
+
+<div th:fragment="alert" class="alert alert-danger alert-dismissible" role="alert">
+    Can't complete operation because of server side error
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 

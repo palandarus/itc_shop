@@ -1,14 +1,15 @@
-package ru.geekbrains.data;
+package ru.geekbrains.controller.repr;
 
 import javax.validation.constraints.NotNull;
 import ru.geekbrains.entities.Role;
 import ru.geekbrains.entities.User;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-public class UserData {
+public class UserRepr {
     private Long id;
 
     @NotNull
@@ -34,6 +35,8 @@ public class UserData {
     private String email;
 
     private String phone;
+
+    private BigDecimal price;
 
     private Collection<Role> roles = new ArrayList<>();
 
@@ -133,10 +136,10 @@ public class UserData {
         this.id = id;
     }
 
-    public UserData() {
+    public UserRepr() {
     }
 
-    public UserData(User user) {
+    public UserRepr(User user) {
         this.id=user.getId();
         this.username = user.getUsername();
         this.enabled = user.isEnabled();
@@ -149,6 +152,16 @@ public class UserData {
         this.email = user.getEmail();
         this.phone = user.getPhone();
         this.roles = user.getRoles();
+
+
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     @Override
@@ -165,6 +178,7 @@ public class UserData {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", price=" + price +
                 ", roles=" + roles +
                 '}';
     }

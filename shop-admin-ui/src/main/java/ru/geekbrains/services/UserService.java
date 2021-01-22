@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.geekbrains.data.UserData;
+import ru.geekbrains.controller.repr.UserRepr;
 import ru.geekbrains.entities.Role;
 import ru.geekbrains.entities.User;
 import ru.geekbrains.exceptions.ResourceNotFoundException;
@@ -36,8 +36,8 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserData findById(long id) {
-        return userRepository.findById(id).map(UserData::new).orElseThrow(() -> new ResourceNotFoundException("User with id: " + id + " doesn't exists (for edit)"));
+    public UserRepr findById(long id) {
+        return userRepository.findById(id).map(UserRepr::new).orElseThrow(() -> new ResourceNotFoundException("User with id: " + id + " doesn't exists (for edit)"));
     }
 
     public User findByUsername(String username) {
@@ -55,15 +55,15 @@ public class UserService implements UserDetailsService {
         return userRepository.getOne(id);
     }
 
-    public User createUser(UserData userData) {
+    public User createUser(UserRepr userRepr) {
         User user = new User();
-        user.setFirstName(userData.getFirstName());
-        user.setLastName(userData.getLastName());
-        user.setUsername(userData.getUsername());
-        user.setPassword(passwordEncoder.encode(userData.getPassword()));
-        user.setEmail(userData.getEmail());
-        user.setPhone(userData.getPhone());
-        user.setRoles(userData.getRoles());
+        user.setFirstName(userRepr.getFirstName());
+        user.setLastName(userRepr.getLastName());
+        user.setUsername(userRepr.getUsername());
+        user.setPassword(passwordEncoder.encode(userRepr.getPassword()));
+        user.setEmail(userRepr.getEmail());
+        user.setPhone(userRepr.getPhone());
+        user.setRoles(userRepr.getRoles());
         return userRepository.save(user);
     }
 
@@ -90,11 +90,13 @@ public class UserService implements UserDetailsService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 
-    public Page<User> findAll(Specification<User> spec, int page, int size) {
-        return userRepository.findAll(spec, PageRequest.of(page, size));
+    public List<UserRepr> findAll() {
+        return userRepository.findAll().stream()
+                .map(UserRepr::new)
+                .collect(Collectors.toList());
     }
 
-    public User saveOrUpdate(UserData user) {
+    public User saveOrUpdate(UserRepr user) {
         User currentUser=userRepository.getOne(user.getId());
         currentUser.setUsername(user.getUsername());
         currentUser.setPassword(passwordEncoder.encode(user.getPassword()));
