@@ -14,14 +14,11 @@ import java.util.stream.Collectors;
 public class BrandServiceImpl implements BrandService{
 
     private BrandRepository brandRepository;
-    private ProductRepository productRepository;
 
     public BrandServiceImpl(
-            BrandRepository categoryRepository,
-            ProductRepository productRepository
+            BrandRepository categoryRepository
     ) {
         this.brandRepository = categoryRepository;
-        this.productRepository = productRepository;
     }
 
     public List<BrandRepr> findAll() {
