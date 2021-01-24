@@ -65,7 +65,8 @@ public class BrandServiceTest {
             brandList.get(i).setId(1L*i);
             brandList.get(i).setName("Brand name "+i);
         }
-
+        when(brandRepository.findAll())
+                .thenReturn(brandList);
         List<BrandRepr> brandReprList=brandService.findAll();
         for (int i = 0; i < brandReprList.size(); i++) {
             assertEquals(brandList.get(i).getId(), brandReprList.get(i).getId());
