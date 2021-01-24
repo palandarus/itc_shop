@@ -39,6 +39,13 @@ public class Product extends AbstractItem {
         this.category = category;
     }
 
+    public Product(String title, BigDecimal price, Category category, Brand brand) {
+        this.title = title;
+        this.price = price;
+        this.brand=brand;
+        this.category = category;
+    }
+
     public String getTitle() {
         return title;
     }

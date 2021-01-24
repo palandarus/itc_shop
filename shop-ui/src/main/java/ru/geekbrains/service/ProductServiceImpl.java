@@ -34,6 +34,8 @@ public class ProductServiceImpl implements ProductService {
     private BrandService brandService;
     private BrandRepository brandRepository;
 
+    public ProductServiceImpl() {
+    }
 
     public ProductServiceImpl(ProductRepository productRepository, CategoryService categoryService, BrandService brandService, CategoryRepository categoryRepository, BrandRepository brandRepository) {
         this.productRepository = productRepository;
@@ -56,7 +58,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
+    public ProductRepository getProductRepository() {
+        return productRepository;
+    }
 
+    public void setProductRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    public CategoryRepository getCategoryRepository() {
+        return categoryRepository;
+    }
+
+    public void setCategoryRepository(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     public void getProductByMaxPrice() {
         List<Product> productByMaxPrice = productRepository.getProductByMaxPrice();
