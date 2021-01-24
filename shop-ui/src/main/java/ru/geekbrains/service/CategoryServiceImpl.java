@@ -16,14 +16,11 @@ import java.util.stream.Collectors;
 public class CategoryServiceImpl implements CategoryService{
 
     private CategoryRepository categoryRepository;
-    private ProductRepository productRepository;
 
     public CategoryServiceImpl(
-            CategoryRepository categoryRepository,
-            ProductRepository productRepository
+            CategoryRepository categoryRepository
     ) {
         this.categoryRepository = categoryRepository;
-        this.productRepository = productRepository;
     }
 
     public List<CategoryRepr> findAll() {
