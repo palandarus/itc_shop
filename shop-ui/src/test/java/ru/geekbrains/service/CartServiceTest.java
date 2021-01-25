@@ -30,7 +30,7 @@ public class CartServiceTest {
     }
 
     @Test
-    public void testAddOnProduct() {
+    public void testAddOneProduct() {
         ProductRepr expectedProduct = new ProductRepr();
         expectedProduct.setId(1L);
         expectedProduct.setPrice(new BigDecimal(123));
@@ -49,5 +49,35 @@ public class CartServiceTest {
         assertNotNull(lineItem.getProductRepr());
         assertEquals(expectedProduct.getName(), lineItem.getProductRepr().getName());
     }
+
+    @Test
+    public void testAddProductQty(){
+
+    }
+
+
+    @Test
+    public void testRemoveProductQty(){
+
+    }
+
+
+    @Test
+    public void testGetLineItems(){
+
+    }
+
+
+    @Test
+    public void testGetSubTotal(){
+
+    }
+
+    @Test
+    public void testRemoveLineItemFromCart(){
+
+    }
+
+
 
 }
