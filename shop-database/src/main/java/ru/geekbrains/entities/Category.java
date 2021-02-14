@@ -33,6 +33,10 @@ public class Category extends AbstractItem implements Serializable {
         this.name = name;
     }
 
+    public Category(String name) {
+        this.name = name;
+    }
+
     public String getCode() {
         return code;
     }
