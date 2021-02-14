@@ -8,10 +8,9 @@ Feature: Brands
     When I navigate to brand page
     And I click on create new button
     And I provide brandname as "<brandname>"
-    And I click on create new button
+    And I click on submit button
     When Open dropdown menu
     And click logout button
-    Then user logged out
 
     Examples:
       | username | password | brandname |

@@ -28,7 +28,7 @@ public class BrandSteps {
 
     @When("^I click on login button$")
     public void iClickOnLoginButton() throws Throwable {
-        WebElement webElement = webDriver.findElement(By.id("btn-login"));
+        WebElement webElement = webDriver.findElement(By.className("btn"));
         webElement.click();
     }
 
@@ -60,27 +60,16 @@ public class BrandSteps {
         Thread.sleep(2000);
     }
 
-    @When("^I click on create new button$")
+    @When("^I click on submit button$")
     public void iClickOnSubmitButton() throws Throwable {
         WebElement webElement = webDriver.findElement(By.id("submitButton"));
         webElement.click();
+        Thread.sleep(2000);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     @When("^Open dropdown menu$")
     public void openDropDownMenu() throws InterruptedException {
-        WebElement webElement = webDriver.findElement(By.id("dd-user"));
+        WebElement webElement = webDriver.findElement(By.className("dropdown"));
         Thread.sleep(1000);
         webElement.click();
         Thread.sleep(10000);
@@ -88,15 +77,11 @@ public class BrandSteps {
 
     @When("^click logout button$")
     public void clickLogoutButton() {
-        WebElement webElement = webDriver.findElement(By.id("link-logout"));
+        WebElement webElement = webDriver.findElement(By.id("logout-btn"));
         webElement.click();
     }
 
-    @Then("^user logged out$")
-    public void userLoggedOut() {
-        webDriver.findElement(By.id("username"));
-        webDriver.findElement(By.id("password"));
-    }
+
 
     @After
     public void quitBrowser() {
