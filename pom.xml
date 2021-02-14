@@ -31,6 +31,7 @@
         <module>shop-picture-service-app</module>
         <module>spring-eureka-server</module>
         <module>spring-gateway</module>
+        <module>shop-admin-ui-test</module>
     </modules>
 
     <dependencyManagement>
